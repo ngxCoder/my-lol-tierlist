@@ -2,7 +2,7 @@ import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPane
 
 export const FAQ = (props: FAQProps) => (
     <Box width="60vw" height="70%">
-        <Accordion allowToggle defaultIndex={0} bg="gray.800" borderRadius="0.375rem">
+        <Accordion allowToggle defaultIndex={0} bg="blue.800" borderRadius="0.375rem">
             {
                 props.data.map((faq, idx, arr) => (
                     <AccordionItem key={idx}>
