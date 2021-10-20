@@ -10,7 +10,19 @@ const Index = () => (
     <Main>
       <VStack spacing={8}>
         <Hero title="My LOL Tierlist" />
-        <SearchBar/>
+        <SearchBar regions={[
+          {label: 'BR', value: 'br1'},
+          {label: 'EUNE', value: 'eun1'},
+          {label: 'EUW', value: 'euw1'},
+          {label: 'JP', value: 'jp1'},
+          {label: 'KR', value: 'kr'},
+          {label: 'LAN', value: 'la1'},
+          {label: 'LAS', value: 'la2'},
+          {label: 'NA', value: 'na1'},
+          {label: 'OCE', value: 'oc1'},
+          {label: 'TR', value: 'tr1'},
+          {label: 'RU', value: 'RU1'},
+        ]}/>
       </VStack>
       <FAQ
       data={[

@@ -2,7 +2,7 @@ import { SearchIcon } from '@chakra-ui/icons';
 import { FormControl, Input, Select, Button, Flex } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form';
 
-export const SearchBar = () => {
+export const SearchBar = (props: SearchBarProps) => {
   const {
     handleSubmit,
     register,
@@ -21,27 +21,16 @@ export const SearchBar = () => {
   <form onSubmit={handleSubmit(onSubmit)}>
     <Flex width="60vw" wrap={{ base: "wrap", md: "nowrap"}}>
 
-      <FormControl id="region" w={{ base: "100%",md: "7rem" }}>
+      <FormControl id="region" w={{ base: "100%",md: "8rem" }}>
         <Select 
         size="lg" 
         borderRightRadius={{ base: "0.375rem", md: "none" }} 
         bg="blue.800"
+        textAlign="center"
         {...register("region")}
         >
           {
-            [
-              {label: 'BR', value: 'br1'},
-              {label: 'EUNE', value: 'eun1'},
-              {label: 'EUW', value: 'euw1'},
-              {label: 'JP', value: 'jp1'},
-              {label: 'KR', value: 'kr'},
-              {label: 'LAN', value: 'la1'},
-              {label: 'LAS', value: 'la2'},
-              {label: 'NA', value: 'na1'},
-              {label: 'OCE', value: 'oc1'},
-              {label: 'TR', value: 'tr1'},
-              {label: 'RU', value: 'RU1'},
-            ].map((region, idx) => (
+            props.regions.map((region, idx) => (
               <option key={idx} value={region.value}>{region.label}</option>
             ))
           }
@@ -80,6 +69,14 @@ export const SearchBar = () => {
 }
 
 SearchBar.defaultProps = {
+  regions: []
+}
+
+export interface SearchBarProps {
+  regions: {
+    label: string,
+    value: string
+  }[]
 }
 
 
