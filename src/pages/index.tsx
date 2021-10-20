@@ -9,7 +9,7 @@ const Index = () => (
     <Header/>
     <Main>
       <VStack spacing={8}>
-        <Hero title="My LOL Tierlist" />
+        <Hero title="My LoL Tier List" />
         <SearchBar regions={[
           {label: 'BR', value: 'br1'},
           {label: 'EUNE', value: 'eun1'},
