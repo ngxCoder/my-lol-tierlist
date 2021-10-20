@@ -1,13 +1,17 @@
-import { Stack, StackProps } from '@chakra-ui/react'
+import { StackProps, VStack } from '@chakra-ui/react'
+import { Children } from 'react'
+import { Container } from './Container'
 
 export const Main = (props: StackProps) => (
-  <Stack
-    spacing="1.5rem"
-    width="100%"
-    maxWidth="48rem"
-    mt="-45vh"
-    pt="8rem"
-    px="1rem"
-    {...props}
-  />
+  <VStack
+  spacing={0}
+  align="stretch">
+    {
+      Children.map(props.children, child => (
+        <Container height="100vh">
+          { child }
+        </Container>
+      ))
+    }
+  </VStack>
 )

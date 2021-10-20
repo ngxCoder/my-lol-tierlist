@@ -11,10 +11,13 @@
     "@chakra-ui/theme-tools": "1.1.2",
     "@emotion/react": "11.1.5",
     "@emotion/styled": "11.1.5",
+    "@fontsource/nunito": "^4.5.0",
+    "@fontsource/nunito-sans": "^4.5.1",
     "framer-motion": "^4.0.3",
     "next": "latest",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.17.4"
   },
   "devDependencies": {
     "@types/node": "^14.6.0",

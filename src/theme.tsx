@@ -1,21 +1,19 @@
-import { extendTheme } from '@chakra-ui/react'
-import { createBreakpoints } from '@chakra-ui/theme-tools'
+import { extendTheme, ThemeConfig } from '@chakra-ui/react'
+import "@fontsource/nunito";
+import "@fontsource/nunito-sans";
 
-const fonts = { mono: `'Menlo', monospace` }
+const fonts = { 
+  heading: `'Nunito Sans', sans-serif`,
+  body: `'Nunito', sans-serif`,
+  mono: `'Menlo', monospace` }
 
-const breakpoints = createBreakpoints({
-  sm: '40em',
-  md: '52em',
-  lg: '64em',
-  xl: '80em',
-})
+const config : ThemeConfig = {
+  useSystemColorMode: true
+}
 
 const theme = extendTheme({
-  colors: {
-    black: '#16161D',
-  },
-  fonts,
-  breakpoints,
+  config,
+  fonts
 })
 
 export default theme
