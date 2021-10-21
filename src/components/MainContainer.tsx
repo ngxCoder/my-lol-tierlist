@@ -2,7 +2,7 @@ import { StackProps, VStack } from '@chakra-ui/react'
 import { Children } from 'react'
 import { Container } from './Container'
 
-export const Main = (props: StackProps) => (
+export const MainContainer = (props: StackProps) => (
   <VStack
   spacing={0}
   align="stretch">

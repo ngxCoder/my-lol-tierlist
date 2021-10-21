@@ -1,13 +1,26 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, VStack } from '@chakra-ui/react'
+import { VStack } from '@chakra-ui/react'
 import { FAQ } from '@components/FAQ'
-import { Header } from '@components/Header'
 import { Hero } from '@components/Hero'
-import { Main } from '@components/Main'
+import { MainContainer } from '@components/MainContainer'
 import { SearchBar } from '@components/SearchBar'
-const Index = () => (
+import { useRouter } from 'next/router'
+
+
+
+const Index = () => {
+  const router = useRouter()
+
+  const onSubmit = (data: any) => {
+    const { region, summoner } = data;
+    router.push({ 
+      pathname: '/',
+      query: { region, summoner }
+    })
+  }
+
+  return (
   <>
-    <Header/>
-    <Main>
+    <MainContainer>
       <VStack spacing={8}>
         <Hero title="My LoL Tier List" />
         <SearchBar regions={[
@@ -22,7 +35,9 @@ const Index = () => (
           {label: 'OCE', value: 'oc1'},
           {label: 'TR', value: 'tr1'},
           {label: 'RU', value: 'RU1'},
-        ]}/>
+        ]}
+        onSubmit={onSubmit}
+        />
       </VStack>
       <FAQ
       data={[
@@ -36,8 +51,8 @@ const Index = () => (
         }
       ]}
       />
-    </Main>
+    </MainContainer>
   </>
-)
+)}
 
 export default Index

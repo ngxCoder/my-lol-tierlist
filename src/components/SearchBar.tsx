@@ -14,11 +14,8 @@ export const SearchBar = (props: SearchBarProps) => {
     }
   });
 
-  function onSubmit(data) {
-    alert(JSON.stringify(data))
-  }
   return (
-  <form onSubmit={handleSubmit(onSubmit)}>
+  <form onSubmit={handleSubmit(props.onSubmit)}>
     <Flex width="60vw" wrap={{ base: "wrap", md: "nowrap"}}>
 
       <FormControl id="region" w={{ base: "100%",md: "8rem" }}>
@@ -76,7 +73,8 @@ export interface SearchBarProps {
   regions: {
     label: string,
     value: string
-  }[]
+  }[],
+  onSubmit: (data: any) => void
 }
 
 
