@@ -13,7 +13,7 @@ const Index = () => {
   const onSubmit = (data: any) => {
     const { region, summoner } = data;
     router.push({ 
-      pathname: '/',
+      pathname: '/stats',
       query: { region, summoner }
     })
   }

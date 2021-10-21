@@ -1,11 +1,13 @@
-import { Flex, Box, Heading, Spacer, useColorMode } from '@chakra-ui/react'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { Flex, Box, Heading, Spacer, useColorMode, Link } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 
 export const Header = () => {
-    const { colorMode } = useColorMode()
 
-  const bgColor = { light: 'gray.50', dark: 'gray.800' }
+    const { pathname } = useRouter()
+    
+    const isHome = pathname === '/'
 
-  const color = { light: 'black', dark: 'white' }
     return (
 
         <Flex 
@@ -14,12 +16,25 @@ export const Header = () => {
         width="100%"
         boxShadow="lg"
         zIndex="1"
-        bg={bgColor[colorMode]}
-        color={color[colorMode]}
+        bg="gray.800"
+        color="white"
         >
+            {
+                 isHome ? '' : (
+                <Box px="2" py="5">
+                    <Heading size="md">
+                        My LOL Tier List
+                    </Heading>
+                </Box>
+                 )
+            }
             <Spacer />
             <Box px="2" py="5">
-                <Heading size="md">by ngxCoder</Heading>
+                <Link href="https://ngxcoder.dev/">
+                    <Heading size="md">
+                        by ngxCoder <ExternalLinkIcon/>
+                    </Heading>
+                </Link>
             </Box>
         </Flex>
     )

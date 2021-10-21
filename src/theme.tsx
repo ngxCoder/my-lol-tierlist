@@ -8,7 +8,7 @@ const fonts = {
   mono: `'Menlo', monospace` }
 
 const config : ThemeConfig = {
-  useSystemColorMode: true
+  useSystemColorMode: false
 }
 
 const theme = extendTheme({
