@@ -9,7 +9,7 @@ module.exports = {
 
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 
-    "modulePaths": ["node_modules","<rootDir>/src"],
+    // "modulePaths": ["node_modules","<rootDir>/src"],
 
     moduleNameMapper: {
       /* Handle CSS imports (with CSS modules)
@@ -23,8 +23,9 @@ module.exports = {
       https://jestjs.io/docs/webpack#handling-static-assets */
       '^.+\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/__mocks__/fileMock.js',
 
-      '^@/components/(.*)$': '<rootDir>/src/components/$1',
-      '^@/pages/(.*)$': '<rootDir>/src/pages/$1',
+      '^@components/(.*)$': '<rootDir>/src/components/$1',
+      '^@pages/(.*)$': '<rootDir>/src/pages/$1',
+      '^@stories/(.*)$': '<rootDir>/src/stories/$1',
     },
 
     testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],

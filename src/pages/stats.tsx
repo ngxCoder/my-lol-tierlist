@@ -18,7 +18,6 @@ const Stats = () => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const query = context.query
 
-    console.log(query)
     const { region, summoner } = query
 
     

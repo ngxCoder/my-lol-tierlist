@@ -20,6 +20,7 @@ export const SearchBar = (props: SearchBarProps) => {
 
       <FormControl id="region" w={{ base: "100%",md: "8rem" }}>
         <Select 
+        data-testid="region"
         size="lg" 
         borderRightRadius={{ base: "0.375rem", md: "none" }} 
         bg="blue.800"
@@ -36,6 +37,7 @@ export const SearchBar = (props: SearchBarProps) => {
 
       <FormControl id="summoner">
         <Input 
+        data-testid="summoner"
         placeholder="Your Summoner Name"
         _placeholder={{color: "gray" }}
         size="lg" 
