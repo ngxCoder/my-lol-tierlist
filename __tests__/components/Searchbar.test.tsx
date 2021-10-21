@@ -4,8 +4,6 @@ import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import '@testing-library/jest-dom/extend-expect';
-
-//👇 Imports a specific story for the test
 import { Base } from '@stories/Searchbar.stories';
 
 
