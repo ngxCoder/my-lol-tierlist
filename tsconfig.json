@@ -16,10 +16,13 @@
     "baseUrl": "./src",
     "paths": {
       "@components/*": [
-        "./components/*"
+        "components/*"
+      ],
+      "@pages/*": [
+        "pages/*"
       ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tests/index.test.jsx"],
   "exclude": ["node_modules"]
 }

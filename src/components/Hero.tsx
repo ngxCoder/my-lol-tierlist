@@ -5,7 +5,7 @@ export const Hero = ({ title }: { title: string }) => (
     justifyContent="center"
     alignItems="center"
   >
-    <Heading fontSize={{ base: "10vw", md: "6vw" }}>{title}</Heading>
+    <Heading role="heading" fontSize={{ base: "10vw", md: "6vw" }}>{title}</Heading>
   </Flex>
 )
 
