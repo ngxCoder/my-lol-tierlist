@@ -8,7 +8,8 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@snek-at/storybook-addon-chakra-ui"
+    "@snek-at/storybook-addon-chakra-ui",
+    "storybook-addon-next-router"
   ],
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {

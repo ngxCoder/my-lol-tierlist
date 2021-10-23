@@ -22,7 +22,7 @@ export const Header = () => {
             {
                  isHome ? '' : (
                 <Box px="2" py="5">
-                    <Heading size="md">
+                    <Heading data-testid="home" size="md">
                         My LOL Tier List
                     </Heading>
                 </Box>
@@ -31,7 +31,7 @@ export const Header = () => {
             <Spacer />
             <Box px="2" py="5">
                 <Link href="https://ngxcoder.dev/">
-                    <Heading size="md">
+                    <Heading data-testid="ngxCoder" size="md">
                         by ngxCoder <ExternalLinkIcon/>
                     </Heading>
                 </Link>

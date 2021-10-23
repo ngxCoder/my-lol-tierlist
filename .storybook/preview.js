@@ -1,4 +1,5 @@
 import theme from '../src/theme.tsx'
+import { RouterContext } from "next/dist/shared/lib/router-context"
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -19,5 +20,8 @@ export const parameters = {
         value: '#00a3c4',
       }
     ],
+  },
+  nextRouter: {
+    Provider: RouterContext.Provider
   }
 }
