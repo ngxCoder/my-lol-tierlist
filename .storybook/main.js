@@ -14,6 +14,7 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
+      '@layouts': path.resolve(__dirname, "../src/layouts"),
       '@components': path.resolve(__dirname, "../src/components"),
       '@pages': path.resolve(__dirname, "../src/pages")
     };
