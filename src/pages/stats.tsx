@@ -1,6 +1,5 @@
 import { MainContainer } from '@components/MainContainer'
 import { useRouter } from 'next/router'
-import axios from 'axios'
 import { GetServerSideProps } from 'next'
 
 
@@ -18,8 +17,15 @@ const Stats = () => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const query = context.query
 
-    const { region, summoner } = query
+    let { region, summoner } = query
 
+    if(Array.isArray(region)){
+        region = region[0]
+    }
+
+    if(Array.isArray(summoner)){
+        summoner = summoner[0]
+    }
     
     return {
         props: {}

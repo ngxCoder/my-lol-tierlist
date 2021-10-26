@@ -5,6 +5,25 @@
             "request": "launch",
             "type": "vscode-edge-devtools.debug",
             "url": "http://localhost:3000" // Provide your project's url to finish configuring
-        }
+        },
+        {
+          "name": "Next.js: debug server-side",
+          "type": "node-terminal",
+          "request": "launch",
+          "command": "npm run dev"
+        },
+        {
+            "name": "Debug Jest Tests",
+            "type": "node",
+            "request": "launch",
+            "runtimeArgs": [
+              "--inspect-brk",
+              "${workspaceRoot}/node_modules/.bin/jest",
+              "--runInBand"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "port": 9229
+          }
     ]
 }

@@ -5,11 +5,10 @@ module.exports = {
       '!**/*.d.ts',
       '!**/node_modules/**',
     ],
-
-
+    
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 
-    // "modulePaths": ["node_modules","<rootDir>/src"],
+    "modulePaths": ["node_modules","<rootDir>/src"],
 
     moduleNameMapper: {
       /* Handle CSS imports (with CSS modules)
@@ -29,7 +28,7 @@ module.exports = {
       '^@stories/(.*)$': '<rootDir>/src/stories/$1',
     },
 
-    testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
+    testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/', '<rootDir>/__tests__/fixtures/'],
     testEnvironment: 'jsdom',
     transform: {
       /* Use babel-jest to transpile tests with the next/babel preset

@@ -8,10 +8,7 @@ export const SearchBar = (props: SearchBarProps) => {
     register,
     formState: { errors, isSubmitting }
   } = useForm({
-    defaultValues: {
-      region: 'la1',
-      summoner: ''
-    }
+    defaultValues: props.default
   });
 
   return (
@@ -76,6 +73,10 @@ export interface SearchBarProps {
     label: string,
     value: string
   }[],
+  default: {
+    region: string,
+    summoner: string
+  },
   onSubmit: (data: any) => void
 }
 
