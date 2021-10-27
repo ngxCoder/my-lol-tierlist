@@ -7,7 +7,7 @@ import getPlatformUrl from 'utils/getPlatformUrl';
 import getRegionUrl from 'utils/getRegionUrl';
 import Qottle from 'qottle';
 import isDev from 'utils/isDev';
-import { log } from 'console';
+
 
 export class RiotRequests {
 
