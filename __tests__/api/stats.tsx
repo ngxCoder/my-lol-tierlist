@@ -24,7 +24,6 @@ beforeEach(() => {
 
 describe('/api/stats', () => {
   it('returns the summoner stats', async () => {
-
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
       method: 'GET',
       query: {

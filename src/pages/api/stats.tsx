@@ -17,7 +17,7 @@ const sortChamps = (a: any, b: any) =>  {
 
 export const stats = async (req: NextApiRequest, res: NextApiResponse) => {
 
-  let { region, summoner } = req.query
+  let { region, summoner, count, type } = req.query
 
   if(Array.isArray(region)){
     region = region[0]
@@ -25,6 +25,32 @@ export const stats = async (req: NextApiRequest, res: NextApiResponse) => {
   
   if(Array.isArray(summoner)){
     summoner = summoner[0]
+  }
+
+  if(Array.isArray(summoner)){
+    count = count[0]
+  }
+
+  if(Array.isArray(type)){
+    type = type[0]
+  }
+
+  if(!region || !summoner){
+    res.status(400).send('region and summoner required')
+  }
+
+  let convertedCount = parseInt(count as string)
+
+  if(!count && !convertedCount){
+    convertedCount = 95
+  }
+
+  if(convertedCount < 1 || convertedCount > 95) {
+    convertedCount = 95
+  }
+
+  if(type !== 'ranked' && type !== 'normal' && type !== 'tourney' && type !== 'tutorial'){
+    type = undefined
   }
 
   const request = new RiotRequests(region)
@@ -43,11 +69,11 @@ export const stats = async (req: NextApiRequest, res: NextApiResponse) => {
       rank
     }))
 
-    const matchesId = await request.matches(puuid)
+    const matchesId = await request.matches(puuid, 0, convertedCount, type as string)
 
     const matchesPromises = matchesId.map(matchId => request.matchById(matchId))
 
-    const matches = await Promise.all(matchesPromises)
+    const matches: Match[] = await Promise.all(matchesPromises)
 
     const champStats = matches.reduce((stats, current) => {
 
