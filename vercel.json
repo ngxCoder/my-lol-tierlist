@@ -1,6 +1,6 @@
 {
     "functions": {
-      "api/stats.*": {
+      "api/stats/**/*.js": {
         "includeFiles": "_db/**"
       }
     }
