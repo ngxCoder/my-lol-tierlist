@@ -1,4 +1,4 @@
-import { LowSync, JSONFileSync } from 'lowdb'
+import { LowSync, JSONFileSync, MemorySync } from 'lowdb'
 import { join } from 'path';
 import fs from 'fs';
 
@@ -13,8 +13,8 @@ export class LowDB {
         // }
 
         // Use JSON file for storage
-        const file = join(process.cwd(), './db.json')
-        const adapter = new JSONFileSync<Data>(file)
+        // const file = join(process.cwd(), './db.json')
+        const adapter = new MemorySync<Data>()
         this.db = new LowSync<Data>(adapter)
     }
 
