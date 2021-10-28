@@ -8,6 +8,7 @@ const handler = nc<NextApiRequest, NextApiResponse>().use( async (req, res, next
 
     if(reqDate <= 0) {
         await redis.setReqDate(new Date().getTime())
+        await redis.close()
         next()
         return
     }
@@ -18,9 +19,11 @@ const handler = nc<NextApiRequest, NextApiResponse>().use( async (req, res, next
     if(today < twoMins){
         const rest =  twoMins - today
         const remaining = `${new Date(rest).getMinutes()} minutes ${new Date(rest).getSeconds()} seconds`
+        await redis.close()
         res.status(429).end(`on cooldown (${remaining} remaining)`);
     } else {
         await redis.setReqDate(new Date().getTime())
+        await redis.close()
         next()
     }
 })

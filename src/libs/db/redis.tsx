@@ -19,4 +19,8 @@ export class Redis {
     async getReqDate() {
         return +(await this.client.get('reqDate'))
     }
+
+    close() {
+        return this.client.end(false)
+    }
 }

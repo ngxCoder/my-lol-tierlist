@@ -28,10 +28,6 @@ export class RiotRequests {
             rateLimitMax: 20 //20 requests
         })
 
-        // this.qottle.on('error', ({entry,error})=> {
-        //     console.error('Error:... will always trigger on an error', error)
-        // })
-
 
         const platformBaseUrl = getPlatformUrl(region)
         this.platform = this.createAxiosInstance(platformBaseUrl, APIKEY)
@@ -52,42 +48,55 @@ export class RiotRequests {
     }
 
     async summoner(name: string) {
-        const encodedName = encodeURIComponent(name)
-        const r = await this.qottle.add(() => this.platform.get<Summoner>(`/lol/summoner/v4/summoners/by-name/${encodedName}`));
 
-        // const rateLimitCountHeader = r.headers['x-method-rate-limit-count']
-
-        // const idxOf = rateLimitCountHeader.indexOf(':')
-        // const max = +rateLimitCountHeader.substring(0, idxOf)
-        // const count = +rateLimitCountHeader.substring(idxOf + 1, rateLimitCountHeader.length)
-
-        return r.result.data;
+        try {
+            const encodedName = encodeURIComponent(name)
+            const r = await this.qottle.add(() => this.platform.get<Summoner>(`/lol/summoner/v4/summoners/by-name/${encodedName}`));
+            return r.result.data;
+        } catch (error) {
+            
+            throw new Error(`Summoner: ${JSON.stringify(error)}`)
+        }
     }
 
     async ranks(summonerId: string) {
-        const r = await this.qottle.add(() => this.platform.get<Rank[]>(`/lol/league/v4/entries/by-summoner/${summonerId}`));
-
-        return r.result.data;
+        try {
+            const r = await this.qottle.add(() => this.platform.get<Rank[]>(`/lol/league/v4/entries/by-summoner/${summonerId}`));
+            return r.result.data;
+        } catch (error) {
+            throw new Error(`Ranks: ${JSON.stringify(error)}`)
+        }
     }
 
     async cdnVersions(region: string) {
-        const lowercaseRegion = region.toLocaleLowerCase()
-        const r = await this.qottle.add(() => this.common.get<cdnVersion>(`https://ddragon.leagueoflegends.com/realms/${lowercaseRegion}.json`));
-
-        return r.result.data;
+        try {
+            const lowercaseRegion = region.toLocaleLowerCase()
+            const r = await this.qottle.add(() => this.common.get<cdnVersion>(`https://ddragon.leagueoflegends.com/realms/${lowercaseRegion}.json`));
+            return r.result.data;
+        } catch (error) {
+            throw new Error(`CDN: ${JSON.stringify(error)}`)
+        }
+        
     }
 
     async matches(puuid: string, start: number, count: number, type: string) {
-        const r = await this.qottle.add(() => this.region.get<string[]>(`/lol/match/v5/matches/by-puuid/${puuid}/ids`, {
-            params: { start, count, type }
-        }));
-
-        return r.result.data;
+        try {
+            const r = await this.qottle.add(() => this.region.get<string[]>(`/lol/match/v5/matches/by-puuid/${puuid}/ids`, {
+                params: { start, count, type }
+            }));
+            return r.result.data;  
+        } catch (error) {
+            throw new Error(`Matches: ${JSON.stringify(error)}`)
+        }
     }
 
     async matchById(matchId: string) {
-        const r = await this.qottle.add(() => this.region.get<Match>(`/lol/match/v5/matches/${matchId}`));
-
-        return r.result.data;
+        try {
+            const r = await this.qottle.add(() => this.region.get<Match>(`/lol/match/v5/matches/${matchId}`));
+            return r.result.data;
+        } catch (error) {
+            throw new Error(`Match By Id: ${JSON.stringify(error)}`)
+        }
+        
     }
 }
