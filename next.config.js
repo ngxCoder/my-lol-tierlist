@@ -1,12 +1,13 @@
-const { parsed: localEnv } = require('dotenv').config()
+const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
-
 const path = require('path')
 
 module.exports = {
     webpack(config) {
-        config.plugins.push(new webpack.EnvironmentPlugin(localEnv))
-        config.node = {fs: "empty"};
+        config.plugins.push(new Dotenv({
+            path: '.env.production.local',
+            safe: true
+        }))
         config.plugins = config.plugins || []
 
         config.plugins = [
