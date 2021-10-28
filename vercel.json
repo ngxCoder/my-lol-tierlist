@@ -1,7 +1,0 @@
-{
-    "functions": {
-      "api/stats/**/*.js": {
-        "includeFiles": "_db/**"
-      }
-    }
-}

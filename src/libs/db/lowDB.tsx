@@ -1,6 +1,6 @@
 import { LowSync, JSONFileSync } from 'lowdb'
 import { join } from 'path';
-
+import fs from 'fs';
 
 export class LowDB {
 
@@ -8,8 +8,12 @@ export class LowDB {
 
     constructor() {
 
+        if(!fs.existsSync(`./tmp/`)){
+            fs.mkdirSync(`./tmp/`, { recursive: true })
+        }
+
         // Use JSON file for storage
-        const file = join(__dirname, '_files', 'db.json')
+        const file = join(process.cwd(), './tmp/db.json')
         const adapter = new JSONFileSync<Data>(file)
         this.db = new LowSync<Data>(adapter)
     }
