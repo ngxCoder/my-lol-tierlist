@@ -1,4 +1,5 @@
 import { LowSync, JSONFileSync } from 'lowdb'
+import { join } from 'path';
 
 
 export class LowDB {
@@ -8,7 +9,7 @@ export class LowDB {
     constructor() {
 
         // Use JSON file for storage
-        const file = './db.json'
+        const file = join(__dirname, '_files', 'db.json')
         const adapter = new JSONFileSync<Data>(file)
         this.db = new LowSync<Data>(adapter)
     }
