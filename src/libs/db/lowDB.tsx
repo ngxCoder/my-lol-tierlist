@@ -11,7 +11,7 @@ export class LowDB {
         const __dirname = dirname(fileURLToPath(import.meta.url));
 
         // Use JSON file for storage
-        const file = join(__dirname, 'db.json')
+        const file = join(__dirname, 'db.json') || join(__dirname, 'db.json.tmp')
         const adapter = new JSONFileSync<Data>(file)
         this.db = new LowSync<Data>(adapter)
     }
