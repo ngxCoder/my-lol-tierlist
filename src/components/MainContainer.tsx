@@ -8,7 +8,7 @@ export const MainContainer = (props: StackProps) => (
   align="stretch">
     {
       Children.map(props.children, child => (
-        <Container height="100vh">
+        <Container  minHeight="100vh" paddingY="80px">
           { child }
         </Container>
       ))

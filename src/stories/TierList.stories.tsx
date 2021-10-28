@@ -1,15 +1,15 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { TierList } from '@components/TierList';
+import { ChampStatsList } from '@components/TierList';
 
 export default {
     title: 'Components/TierList',
-    component: TierList,
+    component: ChampStatsList,
     argTypes: {},
-  } as ComponentMeta<typeof TierList>;
+  } as ComponentMeta<typeof ChampStatsList>;
   
-  const Template: ComponentStory<typeof TierList> = (args) => <TierList {...args} />;
+  const Template: ComponentStory<typeof ChampStatsList> = (args) => <ChampStatsList {...args} />;
 
 
 export const Base = Template.bind({});

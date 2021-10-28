@@ -15,7 +15,13 @@ const Index = () => {
 
   const onSubmit = (data: any) => {
     const { region, summoner } = data;
+    
     setLoading(true)
+
+    if(loading){ //skip if loading
+      return
+    }
+
     router.push({ 
       pathname: '/stats',
       query: { region, summoner }

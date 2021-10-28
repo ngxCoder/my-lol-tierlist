@@ -1,6 +1,7 @@
 interface ChampStat {
   champ: string;
-  win: number;
+  win?: number;
+  lose?: number;
   total: number;
   percentage: number;
 }

@@ -1,24 +1,27 @@
 import { MainContainer } from '@components/MainContainer'
 import { useRouter } from 'next/router'
 import { GetServerSideProps} from 'next'
-import { TierList } from '@components/TierList'
+import { ChampStatsList } from '@components/TierList'
 import absoluteUrl from 'next-absolute-url'
 import axios, { AxiosError } from 'axios'
-import { HStack, VStack } from '@chakra-ui/react'
+import { Grid, HStack, VStack } from '@chakra-ui/react'
 import { ErrorDialog } from '@components/ErrorDialog'
 
 
-const Stats = ({ stats, statusCode, message }: StatsPageProps) => {
+const Stats = ({ champStats, synergyAllies, synergyEnemies, dysergyAllies, dysergyEnemies, statusCode, message }: StatsPageProps) => {
   return (
     <MainContainer>
         {
-            stats ? (
-                <HStack spacing="10px">
-                    <TierList champStats={stats}></TierList>
-                    <VStack spacing="10px">
-                        
-                    </VStack>
-                </HStack>): (
+            champStats ? (
+                <VStack spacing="20px">
+                    <ChampStatsList title="My Tier List" subtitle="These champs won in your last 95 games" champStats={champStats}/>
+                    <Grid gap={6} templateColumns={{ base: "repeat(1, 1fr)" ,md: "repeat(2, 1fr)" }}>
+                        <ChampStatsList title="Synergy" synergy subtitle="Most winning allies champs" champStats={synergyAllies} limit={3}/>
+                        <ChampStatsList title="Synergy" synergy subtitle="Most losing enemies champs" champStats={synergyEnemies} limit={3}/>
+                        <ChampStatsList title="Dysergy" dysergy subtitle="Most losing allies champs" champStats={dysergyAllies} limit={3}/>
+                        <ChampStatsList title="Dysergy" dysergy subtitle="Most winning enemies champs" champStats={dysergyEnemies} limit={3}/>
+                    </Grid>
+                </VStack>): (
                 <ErrorDialog message={message}/>
                 )
         }
@@ -40,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const { origin } = absoluteUrl(req)
 
-    let champStats = null;
+    let [champStats, synergyAllies, synergyEnemies, dysergyAllies, dysergyEnemies] =  Array(5).fill(null); 
 
     try {
 
@@ -54,6 +57,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         })
 
         champStats = response.data.champStats
+        synergyAllies = response.data.synergy.allies
+        synergyEnemies = response.data.synergy.enemies
+        dysergyAllies = response.data.dysergy.allies
+        dysergyEnemies =response.data.dysergy.enemies
 
     } catch (error) {
         const err = error as AxiosError
@@ -68,7 +75,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
         return {
             props: {
-                 stats: champStats
+                 champStats,
+                 synergyAllies,
+                 synergyEnemies,
+                 dysergyAllies,
+                 dysergyEnemies
             }
         }
 }
@@ -78,5 +89,9 @@ export default Stats
 export interface StatsPageProps {
     statusCode?: number,
     message?: string,
-    stats?: ChampStat[]
+    champStats?: ChampStat[],
+    synergyAllies,
+    synergyEnemies,
+    dysergyAllies,
+    dysergyEnemies
 }
