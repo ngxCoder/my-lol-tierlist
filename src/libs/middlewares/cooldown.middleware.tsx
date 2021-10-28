@@ -1,14 +1,15 @@
-import { LowDB } from 'libs/db/lowDB';
+import { Redis } from 'libs/db/redis';
 import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect';
 
-const handler = nc<NextApiRequest, NextApiResponse>().use((req, res, next) => {
-    const lowDB = new LowDB()
-    const reqDate = lowDB.getReqDate()
+const handler = nc<NextApiRequest, NextApiResponse>().use( async (req, res, next) => {
+    const redis = new Redis()
+    const reqDate = await redis.getReqDate()
 
     if(reqDate <= 0) {
-        lowDB.setReqDate(new Date().getTime())
+        await redis.setReqDate(new Date().getTime())
         next()
+        return
     }
 
     const today = new Date().getTime()
@@ -19,7 +20,7 @@ const handler = nc<NextApiRequest, NextApiResponse>().use((req, res, next) => {
         const remaining = `${new Date(rest).getMinutes()} minutes ${new Date(rest).getSeconds()} seconds`
         res.status(429).end(`on cooldown (${remaining} remaining)`);
     } else {
-        lowDB.setReqDate(new Date().getTime())
+        await redis.setReqDate(new Date().getTime())
         next()
     }
 })
