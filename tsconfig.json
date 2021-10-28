@@ -18,6 +18,9 @@
       "@layouts/*": [
         "layouts/*"
       ],
+      "@middlewares/*": [
+        "libs/middlewares/*"
+      ],
       "@components/*": [
         "components/*"
       ],

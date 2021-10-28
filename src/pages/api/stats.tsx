@@ -2,6 +2,7 @@ import nc from "next-connect"
 import type { NextApiRequest, NextApiResponse } from "next"
 import { RiotRequests } from "libs/requests/riot.request";
 import { Match } from "models/match";
+import cooldownMiddleware from "@middlewares/cooldown.middleware";
 
 const sortChamps = (a: any, b: any) =>  {
   if(a.percentage !== b.percentage){
@@ -211,6 +212,7 @@ export const stats = async (req: NextApiRequest, res: NextApiResponse) => {
 
 
 const handler = nc<NextApiRequest, NextApiResponse>()
+.use(cooldownMiddleware)
 .get(stats)
 
 export default handler

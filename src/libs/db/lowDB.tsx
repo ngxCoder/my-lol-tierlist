@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url'
 
 export class LowDB {
 
-    db: LowSync<Data>;
+    private db: LowSync<Data>;
 
     constructor() {
         const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -16,17 +16,18 @@ export class LowDB {
         this.db = new LowSync<Data>(adapter)
     }
 
-    setReqDate(date: Date) { 
-        this.db.data.reqDate = date
+    setReqDate(date: number) {
+        this.db.data = { reqDate: date }
         this.db.write()
     }
 
     getReqDate() {
         this.db.read()
-        return this.db.data ?? { reqDate: undefined }
+        const data = this.db.data ?? { reqDate: 0 }
+        return data.reqDate
     }
 }
 
 export type Data = {
-    reqDate: Date
+    reqDate: number
 }
