@@ -4,10 +4,7 @@ const path = require('path')
 
 module.exports = {
     webpack(config) {
-        config.plugins.push(new Dotenv({
-            path: '.env.production.local',
-            safe: true
-        }))
+        config.plugins.push(new Dotenv())
         config.plugins = config.plugins || []
 
         config.plugins = [
