@@ -72,7 +72,7 @@ export const stats = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const matchesId = await request.matches(puuid, 0, convertedCount, type as string)
 
-    const matchesPromises = matchesId.map(matchId => request.matchById(matchId))
+    const matchesPromises = matchesId.map((matchId) => request.matchById(matchId))
 
     const matches: Match[] = await Promise.all(matchesPromises)
 

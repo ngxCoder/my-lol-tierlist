@@ -2,8 +2,8 @@ import { Avatar, Box, Divider, Flex, Heading, HStack, List, ListItem, Progress, 
 import { ChampStat } from './ChampStat'
 
 export const TierList = ({champStats}: {champStats: ChampStat[]}) => {
-    const stats = champStats
-    .slice(0, 10)
+
+    const stats = champStats.slice(0, 10)
     .map(stat => { 
         let champ = stat.champ
         if(champ === 'FiddleSticks') champ = 'Fiddlesticks'

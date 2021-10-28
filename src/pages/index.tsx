@@ -4,15 +4,18 @@ import { Hero } from '@components/Hero'
 import { MainContainer } from '@components/MainContainer'
 import { SearchBar } from '@components/SearchBar'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { regions } from 'utils/mapRegion'
 
 
 
 const Index = () => {
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
 
   const onSubmit = (data: any) => {
     const { region, summoner } = data;
+    setLoading(true)
     router.push({ 
       pathname: '/stats',
       query: { region, summoner }
@@ -33,6 +36,7 @@ const Index = () => {
             summoner: ''
         }}
         onSubmit={onSubmit}
+        isLoading={loading}
         />
       </VStack>
       <FAQ

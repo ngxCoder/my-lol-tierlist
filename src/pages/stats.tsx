@@ -3,17 +3,25 @@ import { useRouter } from 'next/router'
 import { GetServerSideProps} from 'next'
 import { TierList } from '@components/TierList'
 import absoluteUrl from 'next-absolute-url'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
+import { HStack, VStack } from '@chakra-ui/react'
+import { ErrorDialog } from '@components/ErrorDialog'
 
 
-
-const Stats = ({ stats }) => {
-
-  const router = useRouter()
-
+const Stats = ({ stats, statusCode, message }: StatsPageProps) => {
   return (
     <MainContainer>
-        <TierList champStats={stats}></TierList>
+        {
+            stats ? (
+                <HStack spacing="10px">
+                    <TierList champStats={stats}></TierList>
+                    <VStack spacing="10px">
+                        
+                    </VStack>
+                </HStack>): (
+                <ErrorDialog message={message}/>
+                )
+        }
     </MainContainer>
 )}
 
@@ -48,7 +56,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         champStats = response.data.champStats
 
     } catch (error) {
-        console.error(error)
+        const err = error as AxiosError
+        return {
+            props: {
+                statusCode: err.response.status,
+                message: err.response.data
+            }
+        }
     } 
 
 
@@ -60,3 +74,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 export default Stats
+
+export interface StatsPageProps {
+    statusCode?: number,
+    message?: string,
+    stats?: ChampStat[]
+}

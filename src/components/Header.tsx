@@ -1,6 +1,7 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { Flex, Box, Heading, Spacer, useColorMode, Link } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import NextLink from 'next/link'
 
 export const Header = () => {
 
@@ -22,9 +23,11 @@ export const Header = () => {
             {
                  isHome ? '' : (
                 <Box px="2" py="5">
-                    <Heading data-testid="home" size="md">
-                        My LOL Tier List
-                    </Heading>
+                    <NextLink href="/">
+                        <Heading data-testid="home" size="md" sx={{ cursor: 'pointer' }}>
+                            My LOL Tier List
+                        </Heading>
+                    </NextLink>
                 </Box>
                  )
             }

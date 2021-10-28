@@ -1,5 +1,6 @@
 import { SearchIcon } from '@chakra-ui/icons';
 import { FormControl, Input, Select, Button, Flex } from '@chakra-ui/react'
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export const SearchBar = (props: SearchBarProps) => {
@@ -48,10 +49,11 @@ export const SearchBar = (props: SearchBarProps) => {
         {...register("summoner")} />
       </FormControl>
 
-      <Button 
+      <Button
       type="submit"
       bg="blue.800" 
       size="lg"
+      isLoading={props.isLoading}
       w={{ base: "100%", md: "unset" }}
       borderLeftRadius={{ base: "0.375rem", md: "none" }} 
       _hover={{ bg: "blue.600" }} 
@@ -77,7 +79,8 @@ export interface SearchBarProps {
     region: string,
     summoner: string
   },
-  onSubmit: (data: any) => void
+  onSubmit: (data: any) => void,
+  isLoading: boolean
 }
 
 
