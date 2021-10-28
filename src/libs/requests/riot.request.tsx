@@ -26,7 +26,7 @@ export class RiotRequests {
             rateLimited: true,
             rateLimitPeriod: 1000, //1 second
             rateLimitMax: 20, //20 requests,
-            concurrent: 1
+            concurrent: 2
         })
 
 

@@ -14,7 +14,7 @@ const Stats = ({ champStats, synergyAllies, synergyEnemies, dysergyAllies, dyser
         {
             champStats ? (
                 <VStack spacing="20px">
-                    <ChampStatsList title="My Tier List" subtitle="These champs won in your last 95 games" champStats={champStats}/>
+                    <ChampStatsList title="My Tier List" subtitle="These champs won in your last 50 games" champStats={champStats}/>
                     <Grid gap={6} templateColumns={{ base: "repeat(1, 1fr)" ,md: "repeat(2, 1fr)" }}>
                         <ChampStatsList title="Synergy" synergy subtitle="Most winning allies champs" champStats={synergyAllies} limit={3}/>
                         <ChampStatsList title="Synergy" synergy subtitle="Most losing enemies champs" champStats={synergyEnemies} limit={3}/>
@@ -51,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             params: {
                 region,
                 summoner,
-                count: 95,
+                count:50,
                 type: 'ranked'
             }
         })
