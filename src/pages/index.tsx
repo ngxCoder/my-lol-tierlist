@@ -39,11 +39,11 @@ const Index = () => {
       data={[
         {
           title: 'How it works?',
-          content: 'It collects your stats and analyzes it.'
+          content: 'It collects your stats and analyzes it. (TODO)'
         },
         {
           title: 'Why it has 2 minutes cooldown?',
-          content: 'Riot Games  (where I collect your stats) has a solution to protect themselves against the malicious developers called Rate Limit. If I exceed the 100 requests in 2 minutes, I will get a 429 error'
+          content: 'Riot Games  (where I collect your stats) has a solution to protect themselves against the malicious developers called Rate Limit. If I exceed the 100 requests in 2 minutes, I will get a 429 error (TODO)'
         }
       ]}
       />

@@ -15,7 +15,9 @@ const handler = nc<NextApiRequest, NextApiResponse>().use((req, res, next) => {
     const twoMins = addMinutes(reqDate, 2).getTime()
 
     if(today < twoMins){
-        res.status(500).end('on cooldown');
+        const rest =  twoMins - today
+        const remaining = `${new Date(rest).getMinutes()} minutes ${new Date(rest).getSeconds()} seconds`
+        res.status(429).end(`on cooldown (${remaining} remaining)`);
     } else {
         lowDB.setReqDate(new Date().getTime())
         next()
