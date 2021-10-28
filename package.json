@@ -19,6 +19,7 @@
     "@fontsource/nunito-sans": "^4.5.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.23.0",
+    "dotenv": "^10.0.0",
     "framer-motion": "^4.0.3",
     "handy-redis": "^2.3.1",
     "next": "^11.1.2",
@@ -28,7 +29,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.17.4",
-    "redis": "^3.1.2"
+    "redis": "^3.1.2",
+    "webpack": "^4.46.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
