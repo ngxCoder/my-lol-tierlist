@@ -212,7 +212,7 @@ export const stats = async (req: NextApiRequest, res: NextApiResponse) => {
 
 
 const handler = nc<NextApiRequest, NextApiResponse>()
-.use(cooldownMiddleware)
+.use(cooldownMiddleware())
 .get(stats)
 
 export default handler

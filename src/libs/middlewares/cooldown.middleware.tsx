@@ -26,4 +26,6 @@ const handler = nc<NextApiRequest, NextApiResponse>().use((req, res, next) => {
 
 const addMinutes = (dt: number, minutes: number) => new Date(new Date(dt).getTime() + minutes*60000);
 
-  export default nc().use(handler)
+  export default function base() { 
+     return nc().use(handler) 
+  }
