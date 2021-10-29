@@ -42,6 +42,7 @@ export const SearchBar = (props: SearchBarProps) => {
         variant="outline" 
         borderRadius={{ base: "0.375rem" ,md: "none" }}
         pl="1rem"
+        zIndex="0"
         maxLength={50}
         color="black"
         my={{ base: "1rem",md: "0" }}
